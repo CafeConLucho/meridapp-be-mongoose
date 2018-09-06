@@ -30,6 +30,46 @@ function router() {
       });
     });
 
+    dentistsRouter.route('/:id')
+    .get((req, res) => {
+      Dentist.find({_id: req.params.id}, function (err, dentist) {
+        if (err) {
+          console.log('Error => ' + err);
+          res.send('Dentist GET error');
+        } else {
+          console.log('dentists =>' + dentist);
+          res.send(dentist);
+        }
+      });
+    })  
+    
+    .put((req, res) => {
+      //const dentistName = req.body.name;
+      Dentist.findByIdAndUpdate(req.params.id, req.body, function(err, dentist) {
+        Dentist.find({_id: dentist.id}, function(err, updatedDentist) {
+          if (err) {
+            console.log('Error => ' + err);
+            res.send('Dentist PUT error');
+          } else {
+            console.log('Updated dentist => ' + updatedDentist);
+            res.send(updatedDentist);
+          }
+        });
+      });
+    })
+    
+    .delete((req,res) => {
+      Dentist.findByIdAndRemove(req.params.id, function(err, deletedDentist) {
+        if (err) {
+          console.log('Error => ' + err);
+          res.send('Dentist DELETE error');
+        } else {
+          console.log('Deleted dentist => ' + deletedDentist);
+          res.send(deletedDentist);
+        }
+      });
+    });
+
   return dentistsRouter;
 }
 

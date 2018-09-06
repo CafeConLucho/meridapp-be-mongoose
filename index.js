@@ -23,16 +23,20 @@ app.use(function(req, res, next) {
 });
 
 const dentistsRouter = require('./src/routes/dentistsRouter')();
-/* const patientsRouter = require('./src/routes/patientsRouter')();
-const paymentsRouter = require('./src/routes/paymentsRouter')();
+const patientsRouter = require('./src/routes/patientsRouter')();
 const jobsRouter = require('./src/routes/jobsRouter')();
-const usersRouter = require('./src/routes/usersRouter')(); */
+/* 
+const paymentsRouter = require('./src/routes/paymentsRouter')();
+const usersRouter = require('./src/routes/usersRouter')(); 
+*/
 
 app.use('/api/dentists', dentistsRouter);
-/* app.use('/api/patients', patientsRouter);
-app.use('/api/payments', paymentsRouter);
+app.use('/api/patients', patientsRouter);
 app.use('/api/jobs', jobsRouter);
-app.use('/api/users', usersRouter); */
+/* 
+app.use('/api/payments', paymentsRouter);
+app.use('/api/users', usersRouter); 
+*/
 
 app.get('/api', (req, res) => {
   res.send('Hello world');
