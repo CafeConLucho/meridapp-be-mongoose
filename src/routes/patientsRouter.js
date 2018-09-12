@@ -18,8 +18,23 @@ function router() {
     })  
     
     .post((req, res) => {
-      const { firstName, lastName, dni_type, dni_number } = req.body;
-      Patient.create({ firstName, lastName, dni_type, dni_number }, function(err, createdPatient) {
+      /* 
+        {
+          "firstName": "Diego",
+          "lastName": "Merida",
+          "dni": {
+            "type": "DNI",
+            "number": 34123456
+          },
+          "medicalInsurance": {
+            "medicalInsuranceId": "5b9958f28fd3a6501090e1fd",
+            "affiliateNumber": "123456"
+          },
+          "birthday": "1989-10-14",
+          "phone": "2235235948"
+        }
+      */
+      Patient.create(req.body, function(err, createdPatient) {
         if (err) {
           console.log('Error => ' + err);
           res.send('Patients POST error');

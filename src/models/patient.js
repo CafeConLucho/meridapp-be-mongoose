@@ -1,10 +1,18 @@
 const mongoose = require('mongoose');
 
 const patientSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  dni_type: String,
-  dni_number: Number
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  dni: {
+    type: { type: String, required: true },
+    number: { type: Number, required: true }
+  },
+  medicalInsurance: {
+    medicalInsuranceId: { type: mongoose.Schema.Types.ObjectId },
+    affiliateNumber: { type: String }
+  },
+  birthday: { type: Date, required: true },
+  phone:  { type: String, required: true }
 }, {
   collection: 'patients'
 });
