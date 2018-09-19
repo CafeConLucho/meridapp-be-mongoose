@@ -9,6 +9,7 @@ const patientSchema = new mongoose.Schema({
   },
   medicalInsurance: {
     medicalInsuranceId: { type: mongoose.Schema.Types.ObjectId },
+    plan: { type: String },
     affiliateNumber: { type: String }
   },
   birthday: { type: Date, required: true },
